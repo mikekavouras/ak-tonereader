@@ -10,26 +10,25 @@ import UIKit
 import AudioKit
 
 class ViewController: UIViewController {
-    
-    var oscillator = AKOscillator()
-    var oscillator2 = AKOscillator()
+
+    let mic = AKMicrophone()
+    var tracker: AKFrequencyTracker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AudioKit.output = AKMixer(oscillator, oscillator2)
-        AKSettings.playbackWhileMuted = true
+        tracker = AKFrequencyTracker.init(mic)
+        let silence = AKBooster(tracker, gain: 0)
+        
+        AudioKit.output = silence
         try? AudioKit.start()
+        
+        let timer = Timer(timeInterval: 0.1, target: self, selector: #selector(readFrequency), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer, forMode: .common)
     }
     
-    @IBAction func buttonTapped(_ sender: Any) {
-        if oscillator.isPlaying {
-            oscillator.stop()
-        } else {
-            oscillator.amplitude = random(in: 0.5...1)
-            oscillator.frequency = random(in: 220...880)
-            oscillator.start()
-        }
+    @objc private func readFrequency()  {
+        debugPrint(tracker.frequency)
     }
 }
 
