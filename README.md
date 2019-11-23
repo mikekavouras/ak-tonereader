@@ -30,7 +30,8 @@ You may see the following error when running
 
 * right click on `info.plist`
 * select `open as` -> `source code`
+* add the following anywhere in the file:
 ```
-<key>NSMicrophoneUsageDescription**</key>
+<key>NSMicrophoneUsageDescription</key>
 <string>Can't hear you without mic access</string>
 ```
