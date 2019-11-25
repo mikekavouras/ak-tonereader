@@ -14,6 +14,7 @@
 		8D28D7B323898A3D00CD60BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D28D7B123898A3D00CD60BA /* Main.storyboard */; };
 		8D28D7B523898A3D00CD60BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D28D7B423898A3D00CD60BA /* Assets.xcassets */; };
 		8D28D7B823898A3D00CD60BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D28D7B623898A3D00CD60BA /* LaunchScreen.storyboard */; };
+		8DF1B9D5238AD99200A16A28 /* CircleWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1B9D4238AD99200A16A28 /* CircleWaveView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		8D28D7B423898A3D00CD60BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D28D7B723898A3D00CD60BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D28D7B923898A3D00CD60BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DF1B9D4238AD99200A16A28 /* CircleWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWaveView.swift; sourceTree = "<group>"; };
 		EE12C5B4802FF8ED24C99D69 /* libPods-ToneReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToneReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 				8D28D7AD23898A3D00CD60BA /* SceneDelegate.swift */,
 				8D28D7AF23898A3D00CD60BA /* ViewController.swift */,
 				8D28D7B123898A3D00CD60BA /* Main.storyboard */,
+				8DF1B9D4238AD99200A16A28 /* CircleWaveView.swift */,
 				8D28D7B423898A3D00CD60BA /* Assets.xcassets */,
 				8D28D7B623898A3D00CD60BA /* LaunchScreen.storyboard */,
 				8D28D7B923898A3D00CD60BA /* Info.plist */,
@@ -88,7 +91,6 @@
 				4D12EF7B1B495A34C264D1E3 /* Pods-ToneReader.debug.xcconfig */,
 				4D80379543C8FBE1A238ECEA /* Pods-ToneReader.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -192,6 +194,7 @@
 				8D28D7B023898A3D00CD60BA /* ViewController.swift in Sources */,
 				8D28D7AC23898A3D00CD60BA /* AppDelegate.swift in Sources */,
 				8D28D7AE23898A3D00CD60BA /* SceneDelegate.swift in Sources */,
+				8DF1B9D5238AD99200A16A28 /* CircleWaveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

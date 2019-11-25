@@ -8,27 +8,31 @@
 
 import UIKit
 import AudioKit
+import AudioKitUI
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, EZMicrophoneDelegate {
 
-    let mic = AKMicrophone()
-    var tracker: AKFrequencyTracker!
+    var mic: EZMicrophone!
+    @IBOutlet weak var audioPlot: EZAudioPlot!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tracker = AKFrequencyTracker.init(mic)
-        let silence = AKBooster(tracker, gain: 0)
+        mic = EZMicrophone(delegate: self)
+        mic.startFetchingAudio()
         
-        AudioKit.output = silence
-        try? AudioKit.start()
-        
-        let timer = Timer(timeInterval: 0.1, target: self, selector: #selector(readFrequency), userInfo: nil, repeats: true)
-        RunLoop.current.add(timer, forMode: .common)
-    }
-    
-    @objc private func readFrequency()  {
-        debugPrint(tracker.frequency)
+        audioPlot.backgroundColor = .white
+        audioPlot.color = .black
+        audioPlot.plotType = .buffer
+        audioPlot.shouldMirror = false
+        audioPlot.shouldFill = false
     }
 }
 
+extension ViewController {
+    func microphone(_ microphone: EZMicrophone!, hasAudioReceived buffer: UnsafeMutablePointer<UnsafeMutablePointer<Float>?>!, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32, atTime timestamp: UnsafePointer<AudioTimeStamp>!) {
+        DispatchQueue.main.async {
+            self.audioPlot.updateBuffer(buffer[0], withBufferSize: bufferSize)
+        }
+    }
+}

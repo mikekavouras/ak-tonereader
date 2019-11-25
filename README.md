@@ -1,5 +1,16 @@
 # ToneReader
 
+## From source
+
+```
+git clone https://github.com/mikekavouras/ak-tonereader.git
+cd ak-tonereader
+pod install
+open ToneReader.xcworkspace/ -a Xcode
+```
+
+## From scratch 
+
 **Create project**
 file -> new -> project
 
