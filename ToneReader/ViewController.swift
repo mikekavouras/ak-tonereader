@@ -15,6 +15,8 @@ class ViewController: UIViewController, EZMicrophoneDelegate {
     var mic: EZMicrophone!
     @IBOutlet weak var audioPlot: EZAudioPlot!
     
+    var lastTime = Date()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +33,8 @@ class ViewController: UIViewController, EZMicrophoneDelegate {
 
 extension ViewController {
     func microphone(_ microphone: EZMicrophone!, hasAudioReceived buffer: UnsafeMutablePointer<UnsafeMutablePointer<Float>?>!, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32, atTime timestamp: UnsafePointer<AudioTimeStamp>!) {
+        guard Date().timeIntervalSince(lastTime) > 0.06 else { return }
+        lastTime = Date()
         DispatchQueue.main.async {
             self.audioPlot.updateBuffer(buffer[0], withBufferSize: bufferSize)
         }
