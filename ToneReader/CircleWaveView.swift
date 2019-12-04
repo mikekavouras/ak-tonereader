@@ -17,17 +17,31 @@ class CircleWaveView: EZAudioPlot {
             let centerY: Double = Double(frame.size.height) / 2.0
             let baseRadius: Double = 100.0
             let scale: Double = 50.0
+            let mirrorAmount = 180
+            var mirrorPoints = [Double]()
             
             path.move(to: CGPoint(x: centerX + baseRadius, y: centerY))
             
             for i in (0..<pointCount) {
-                guard let point = points?[Int(i)] else { continue }
+                let mirrorIndex = ((Int(i) + mirrorAmount) - 1023) - 1
+                var radius: Double
                 
-                let radius: Double = baseRadius + (Double(point.y) * scale)
+                guard let point = points?[Int(i)+1] else { continue }
+                
+                radius = baseRadius + (Double(point.y) * scale)
+                if mirrorIndex >= 0 {
+                    let percentage = ((100/Double(mirrorAmount)) * Double(mirrorIndex))/100
+                    radius = (radius * (1 - percentage)) + (mirrorPoints[mirrorIndex] * percentage)
+                }
+                
                 let degrees: Double = 360.0 * (Double(point.x)) / 1023.0
                 let radians = degrees * .pi / 180.0
                 let x = centerX + radius * cos(radians)
                 let y = centerY + radius * sin(radians)
+                    
+                if i < mirrorAmount {
+                    mirrorPoints.insert(radius, at: 0)
+                }
                 path.addLine(to: .init(x: x, y: y))
             }
             
