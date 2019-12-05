@@ -20,6 +20,8 @@ class ViewController: UIViewController, EZMicrophoneDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AKSettings.sampleRate = 48000
+        
         mic = EZMicrophone(delegate: self)
         mic.startFetchingAudio()
         
